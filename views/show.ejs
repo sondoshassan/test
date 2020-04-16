@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>result</title>
+</head>
+
+<body>
+    <h1>All Books</h1>
+    <% data.forEach((val,id) =>{ %>
+    <div>
+        <img src="<%= val.image %>">
+        <h2><%= val.title %></h2>
+        <ul>
+            <%val.authors.forEach(value =>{%>
+            <li><%= value %></li>
+            <%});%>
+        </ul>
+        <p><%= val.description %></p>
+        <button id="<%=id%>">select</button>
+    </div>
+    <form action="/" method="POST" id='form<%=id%>'>
+        <input hidden type="text" name="image" value="<%= val.image %>">
+        <input hidden type="text" name="title" value="<%= val.title %>">
+        <%val.authors.forEach(value =>{%>
+        <input type="text" name="authors" value="<%= value %>">
+        <%});%>
+        <input type="text" name="description" value="<%= val.description %>">
+        <input type="text" name="isbn" value="<%= val.isbn %>">
+        <input type="text" name="bookshelf">
+        <button type="submit">save</button>
+    </form>
+    <% }); %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.slim.min.js"></script>
+<script src="/app.js"></script>
+</body>
+
+
+</html>
